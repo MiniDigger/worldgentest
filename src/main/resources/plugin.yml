@@ -1,0 +1,5 @@
+name: Worldgentest
+version: ${project.version}
+main: me.minidigger.worldgentest.Worldgentest
+load: STARTUP
+authors: [MiniDigger]
