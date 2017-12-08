@@ -25,9 +25,7 @@ class FlowerBlockPopulator : BlockPopulator() {
                         n < 16 -> {
                             block.type = Material.LONG_GRASS
                             block.state.apply {
-                                data = LongGrass().apply {
-                                    species = GrassSpecies.NORMAL
-                                }
+                                data = LongGrass(GrassSpecies.NORMAL)
                                 update()
                             }// why do I need a state here?.....
                         }
