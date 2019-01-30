@@ -3,3 +3,4 @@ version: ${project.version}
 main: me.minidigger.worldgentest.Worldgentest
 load: STARTUP
 authors: [MiniDigger]
+api-version: 1.13

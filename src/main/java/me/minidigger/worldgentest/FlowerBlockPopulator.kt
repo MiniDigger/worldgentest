@@ -20,19 +20,18 @@ class FlowerBlockPopulator : BlockPopulator() {
                 if (block.type == Material.AIR && block.getRelative(BlockFace.DOWN).type == Material.GRASS) {
                     val n = random.nextInt(64)
                     when {
-                        n < 1 -> block.type = Material.RED_ROSE
-                        n < 4 -> block.type = Material.YELLOW_FLOWER
+                        n < 1 -> block.type = Material.ROSE_RED
+                        n < 4 -> block.type = Material.BLUE_ORCHID
                         n < 16 -> {
-                            block.type = Material.LONG_GRASS
+                            block.type = Material.TALL_GRASS
                             block.state.apply {
                                 data = LongGrass(GrassSpecies.NORMAL)
                                 update()
                             }// why do I need a state here?.....
                         }
                         n < 32 -> {
-                            block.type = Material.DOUBLE_PLANT
-                            block.getRelative(BlockFace.UP).type = Material.DOUBLE_PLANT
-                            // no material data for double plant.......
+                            block.type = Material.SUNFLOWER
+                            block.getRelative(BlockFace.UP).type = Material.SUNFLOWER
                         }
                     }
                 }
