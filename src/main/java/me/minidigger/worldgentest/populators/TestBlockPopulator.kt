@@ -1,4 +1,4 @@
-package me.minidigger.worldgentest
+package me.minidigger.worldgentest.populators
 
 import org.bukkit.Bukkit
 import org.bukkit.Chunk

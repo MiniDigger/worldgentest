@@ -1,5 +1,6 @@
 package me.minidigger.worldgentest
 
+import me.minidigger.worldgentest.populators.TestBlockPopulator
 import org.bukkit.*
 import org.bukkit.block.BlockFace
 import org.bukkit.generator.BlockPopulator
