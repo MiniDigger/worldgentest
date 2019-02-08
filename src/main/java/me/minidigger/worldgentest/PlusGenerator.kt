@@ -1,8 +1,11 @@
 package me.minidigger.worldgentest
 
+import com.sun.org.apache.xpath.internal.operations.Plus
+import net.minecraft.server.v1_13_R2.*
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.World
+import org.bukkit.craftbukkit.v1_13_R2.CraftWorld
 import org.bukkit.generator.ChunkGenerator
 import java.util.*
 
@@ -10,14 +13,33 @@ class PlusGenerator(id: String) : ChunkGenerator() {
 
     private val size = id.split("-")[1].toInt()
 
-    override fun generateChunkData(world: World?, random: Random?, x: Int, z: Int, biome: ChunkGenerator.BiomeGrid?): ChunkGenerator.ChunkData {
+    private lateinit var overworldGen : ChunkProviderGenerate
+
+    fun getNmsGen(world : World): ChunkProviderGenerate {
+        val nmsWorld = (world as CraftWorld).handle
+        val genSettings = GeneratorSettingsOverworld()
+        val biomeProvider = WorldChunkManagerOverworld(BiomeLayoutOverworldConfiguration())
+        // todo looks like we need to set worlddata before being able to use biome layout overworld config
+        val overworldGen = ChunkProviderGenerate(nmsWorld, biomeProvider, genSettings)
+        return overworldGen
+    }
+
+    override fun generateChunkData(world: World, random: Random?, x: Int, z: Int, biome: ChunkGenerator.BiomeGrid): ChunkGenerator.ChunkData {
         val chunkData = createChunkData(world)
+
 
         if (shouldFillChunk(x, z)) {
             // main content //TODO delegate to vanilla chunk gen
-            chunkData.setRegion(0, 63, 0, 16, 64, 16, Material.GRASS_BLOCK)
-            chunkData.setRegion(0, 1, 0, 16, 63, 16, Material.DIRT)
-            chunkData.setRegion(0, 0, 0, 16, 1, 16, Material.BEDROCK)
+//            chunkData.setRegion(0, 63, 0, 16, 64, 16, Material.GRASS_BLOCK)
+//            chunkData.setRegion(0, 1, 0, 16, 63, 16, Material.DIRT)
+//            chunkData.setRegion(0, 0, 0, 16, 1, 16, Material.BEDROCK)
+
+            if(!::overworldGen.isInitialized) {
+                overworldGen = getNmsGen(world)
+            }
+
+            val chunkPrimer = ProtoChunk(ChunkCoordIntPair(x, z), ChunkConverter.a) // empty chunk converter
+            overworldGen.a(x, z, chunkPrimer)
 
             // borders
             when {

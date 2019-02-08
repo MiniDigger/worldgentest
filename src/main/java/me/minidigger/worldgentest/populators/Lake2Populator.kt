@@ -17,7 +17,7 @@ class Lake2Populator : BlockPopulator() {
                 if(y == 2){
                     val block = chunk.getBlock(x, y, z)
                     if(block.type == Material.AIR){
-                        block.type = Material.STATIONARY_WATER
+                        block.type = Material.WATER
                         block.getRelative(BlockFace.DOWN).type = Material.SAND
                     }
                 }
