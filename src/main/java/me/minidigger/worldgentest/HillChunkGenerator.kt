@@ -44,5 +44,5 @@ class HillChunkGenerator : ChunkGenerator() {
 
     override fun canSpawn(world: World, x: Int, z: Int) = true
 
-    override fun getDefaultPopulators(world: World?) = listOf(FlowerBlockPopulator(), Lake2Populator())
+    override fun getDefaultPopulators(world: World) = listOf(FlowerBlockPopulator(), Lake2Populator())
 }

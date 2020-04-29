@@ -27,7 +27,7 @@ class TestChunkGenerator : ChunkGenerator() {
         layers.add(Sign().apply { setFacingDirection(BlockFace.SOUTH_SOUTH_EAST) })
     }
 
-    override fun generateChunkData(world: World?, random: Random?, x: Int, z: Int, biome: ChunkGenerator.BiomeGrid?): ChunkGenerator.ChunkData {
+    override fun generateChunkData(world: World, random: Random, x: Int, z: Int, biome: ChunkGenerator.BiomeGrid): ChunkData {
         val chunkData = createChunkData(world)
 
         layers.withIndex().forEach { (layer, data) -> chunkData.setRegion(layer, layer, layer, 16 - layer, layer + 1, 16 - layer, data) }
@@ -40,7 +40,7 @@ class TestChunkGenerator : ChunkGenerator() {
 
     override fun canSpawn(world: World, x: Int, z: Int) = true
 
-    override fun getDefaultPopulators(world: World?) = listOf<BlockPopulator>(TestBlockPopulator())
+    override fun getDefaultPopulators(world: World) = listOf<BlockPopulator>(TestBlockPopulator())
 
-    override fun getFixedSpawnLocation(world: World?, random: Random?) = Location(world, 4.0, 4.0, 4.0)
+    override fun getFixedSpawnLocation(world: World, random: Random) = Location(world, 4.0, 4.0, 4.0)
 }

@@ -10,7 +10,7 @@ class PlusGenerator(id: String) : ChunkGenerator() {
 
     private val size = id.split("-")[1].toInt()
 
-    override fun generateChunkData(world: World, random: Random?, x: Int, z: Int, biome: ChunkGenerator.BiomeGrid): ChunkGenerator.ChunkData {
+    override fun generateChunkData(world: World, random: Random, x: Int, z: Int, biome: BiomeGrid): ChunkData {
         return if (shouldFillChunk(x, z)) {
             // main content
 
@@ -30,7 +30,7 @@ class PlusGenerator(id: String) : ChunkGenerator() {
 
     override fun canSpawn(world: World, x: Int, z: Int) = shouldFillChunk(x, z)
 
-    override fun getFixedSpawnLocation(world: World?, random: Random?) = Location(world, 0.0, 64.0, 0.0)
+    override fun getFixedSpawnLocation(world: World, random: Random) = Location(world, 0.0, 64.0, 0.0)
 
     private fun shouldFillChunk(tx: Int, tz: Int): Boolean {
         val x = if (tx < 0) -tx else tx + 1
@@ -39,9 +39,19 @@ class PlusGenerator(id: String) : ChunkGenerator() {
         return (x < size && z < size * 2) || (x < size * 2 && z < size)
     }
 
-    override fun shouldAddVanillaDecorations() = true
+    override fun shouldGenerateCaves(): Boolean {
+        return true
+    }
 
-    override fun shouldAddVanillaFeatures() = true
+    override fun shouldGenerateDecorations(): Boolean {
+        return true
+    }
 
-    override fun shouldAddVanillaMobs() = true
+    override fun shouldGenerateMobs(): Boolean {
+        return true
+    }
+
+    override fun shouldGenerateStructures(): Boolean {
+        return true
+    }
 }

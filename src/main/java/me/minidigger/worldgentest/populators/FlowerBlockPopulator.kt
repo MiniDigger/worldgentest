@@ -20,7 +20,7 @@ class FlowerBlockPopulator : BlockPopulator() {
                 if (block.type == Material.AIR && block.getRelative(BlockFace.DOWN).type == Material.GRASS) {
                     val n = random.nextInt(64)
                     when {
-                        n < 1 -> block.type = Material.ROSE_RED
+                        n < 1 -> block.type = Material.ROSE_BUSH
                         n < 4 -> block.type = Material.BLUE_ORCHID
                         n < 16 -> {
                             block.type = Material.TALL_GRASS

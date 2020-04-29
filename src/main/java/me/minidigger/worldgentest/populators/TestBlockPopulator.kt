@@ -24,7 +24,7 @@ class TestBlockPopulator : BlockPopulator() {
                         is Skull -> {
                             val skull = block.state as Skull
                             skull.skullType = SkullType.PLAYER
-                            skull.owningPlayer = Bukkit.getOfflinePlayer(UUID.fromString("2c771d16-f492-4f7a-adb7-61c38a9c9bfb"))// MiniDigger
+//                            skull.owningPlayer = Bukkit.getOfflinePlayer(UUID.fromString("2c771d16-f492-4f7a-adb7-61c38a9c9bfb"))// MiniDigger
                             skull.update()
                         }
                     }
